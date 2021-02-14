@@ -19,20 +19,17 @@ export const Map = () => {
         zoom: 8
     });
 
-    useWindowResize(() => {
+    const updateViewport = () =>
         setViewport((state) => ({
             ...state,
             width: ref.current?.offsetWidth ?? 0,
             height: ref.current?.offsetHeight ?? 0
         }));
-    });
+
+    useWindowResize(updateViewport);
 
     React.useEffect(() => {
-        setViewport((state) => ({
-            ...state,
-            width: ref.current?.offsetWidth ?? 0,
-            height: ref.current?.offsetHeight ?? 0
-        }));
+        updateViewport();
     }, [ref]);
 
     const onVieportChange = React.useCallback(
