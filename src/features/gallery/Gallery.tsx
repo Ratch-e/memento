@@ -1,13 +1,13 @@
 import React from "react";
 import { GalleryProvider } from "../../context/GalleryProvider";
-import { Map } from "../map/Map";
+import { MainMap } from "../mainMap/MainMap";
 
 import styles from "./Gallery.module.css";
 
 export const Gallery = () => (
     <GalleryProvider>
         <section className={styles.gallery}>
-            <Map />
+            <MainMap />
         </section>
     </GalleryProvider>
 );

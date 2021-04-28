@@ -1,0 +1,13 @@
+.map {
+    width: 50vw;
+    flex-grow: 1;
+}
+
+.page {
+    display: flex;
+    flex-grow: 1;
+}
+
+.upload {
+    width: 50vw;
+}

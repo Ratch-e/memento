@@ -1,12 +1,5 @@
 import React from "react";
+import { Gallery } from "src/features/gallery/Gallery";
 
-import { Gallery } from "../components/gallery/Gallery";
-import { Header } from "../components/header/Header";
-
-const HomePage: React.FC = () => (
-    <main>
-        <Header />
-        <Gallery />
-    </main>
-);
+const HomePage = () => <Gallery />;
 export default HomePage;

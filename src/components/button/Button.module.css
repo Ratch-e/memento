@@ -1,0 +1,12 @@
+.button {
+    background-color: #0511bd;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 15px;
+    box-shadow: -4px 4px 0 0 red;
+    transition: box-shadow 0.2s linear;
+}
+
+.button:hover {
+    box-shadow: -6px 6px 0 0 red;
+}

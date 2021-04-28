@@ -1,12 +1,18 @@
 import React from "react";
-import ReactMapGL, { ViewportProps } from "react-map-gl";
-import { useWindowResize } from "@hooks";
+import ReactMapGL, { Marker, ViewportProps } from "react-map-gl";
+import { useWindowResize } from "src/common/hooks";
+import { Coordinates } from "src/common/types";
 
 import { GalleryContext } from "../../context/GalleryProvider";
 
-import styles from "./Map.module.css";
+interface MapProps {
+    className?: string;
+    markers?: {
+        coordinates: Coordinates;
+    }[];
+}
 
-export const Map = () => {
+export const PhotosMap = ({ className, markers }: MapProps) => {
     const ref = React.useRef<HTMLDivElement>(null);
     const {
         coordinates: { latitude, longitude },
@@ -16,7 +22,7 @@ export const Map = () => {
     const [viewport, setViewport] = React.useState<ViewportProps>({
         width: ref.current?.offsetWidth ?? 0,
         height: ref.current?.offsetHeight ?? 0,
-        zoom: 8
+        zoom: 15
     });
 
     const updateViewport = () =>
@@ -40,16 +46,28 @@ export const Map = () => {
         [setCoordinates]
     );
 
+    const renderedMarkers = React.useMemo(
+        () =>
+            markers?.map(({ coordinates: { latitude, longitude } }, index) => (
+                <Marker key={index} longitude={longitude} latitude={latitude}>
+                    You are here
+                </Marker>
+            )),
+        [markers]
+    );
+
     return (
-        <div className={styles.wrapper} ref={ref}>
+        <div className={className} ref={ref}>
             <ReactMapGL
                 {...viewport}
                 latitude={latitude}
                 longitude={longitude}
+                mapStyle="mapbox://styles/ratch/cknw42h5g25g517jg4swcnya9"
                 /* TODO add .env */
                 mapboxApiAccessToken="pk.eyJ1IjoicmF0Y2giLCJhIjoiY2tnZmhreHN0MTNobTJ6bnYxa2hkMXlzOSJ9.XUZdEVvPSrVBU8Spi6ZWvg"
-                onViewportChange={onVieportChange}
-            />
+                onViewportChange={onVieportChange}>
+                {renderedMarkers}
+            </ReactMapGL>
         </div>
     );
 };

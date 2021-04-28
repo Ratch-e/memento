@@ -20,7 +20,7 @@
     "baseUrl": ".",
     "paths": {
       "@hooks": [
-        "utils/hooks"
+        "src/hooks"
       ]
     }
   },

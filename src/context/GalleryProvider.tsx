@@ -1,9 +1,5 @@
 import * as React from "react";
-
-interface Coordinates {
-    latitude: number;
-    longitude: number;
-}
+import { Coordinates } from "src/common/types";
 
 interface GalleryContext {
     coordinates: Coordinates;
